@@ -4,21 +4,21 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 1rem 0;
-  transition: all 0.3s ease;
+  padding: 1.15rem 0;
+  transition: var(--transition);
 }
 
 .navbar.scrolled {
-  background: rgba(10, 10, 15, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  padding: 0.65rem 0;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  background: rgba(10, 11, 14, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.85rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1140px;
   margin: 0 auto;
   padding: 0 1.5rem;
   display: flex;
@@ -37,16 +37,22 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #6366f1, #a855f7);
-  border-radius: 10px;
-  font-family: 'Space Grotesk', sans-serif;
+  width: 36px;
+  height: 36px;
+  background: var(--color-surface);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 1rem;
-  color: white;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  font-size: 0.9rem;
+  color: #f8fafc;
+  letter-spacing: -0.02em;
+  transition: var(--transition);
+}
+
+.logo:hover .logoBox {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: var(--color-surface-2);
 }
 
 .desktopNav {
@@ -57,89 +63,67 @@
 }
 
 .navLink {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
   color: #94a3b8;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: var(--transition);
   position: relative;
 }
 
-.navLink:hover,
-.navLink.active {
-  color: #e2e8f0;
+.navLink:hover {
+  color: #f8fafc;
 }
 
-.navLink.active::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #6366f1, #a855f7);
+.navLink.active {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .hireBtn {
-  flex-shrink: 0;
-  padding: 0.5rem 1.25rem !important;
-  font-size: 0.875rem !important;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: linear-gradient(135deg, #6366f1, #a855f7);
-  color: white;
-  font-weight: 600;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.hireBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+  font-size: 0.82rem;
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
 }
 
 .hamburger {
   display: none;
-  background: none;
-  border: none;
-  color: #e2e8f0;
+  background: transparent;
+  color: #f8fafc;
   font-size: 1.25rem;
   padding: 0.5rem;
-  cursor: pointer;
   margin-left: auto;
 }
 
+/* Mobile Nav */
 .mobileMenu {
-  overflow: hidden;
-  background: rgba(10, 10, 15, 0.97);
-  backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
-  padding: 0.5rem 0;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: #0d0f14;
+  border-bottom: 1px solid var(--color-border);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 999;
 }
 
-.mobileNavLink {
-  display: block;
-  padding: 0.9rem 2rem;
-  font-size: 1rem;
+.mobileLink {
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
   font-weight: 500;
-  color: #94a3b8;
+  color: #cbd5e1;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  border-left: 3px solid transparent;
 }
 
-.mobileNavLink:hover {
-  color: #e2e8f0;
-  border-left-color: #6366f1;
-  background: rgba(99, 102, 241, 0.05);
+.mobileLink:hover {
+  background: var(--color-surface);
+  color: #ffffff;
 }
 
 @media (max-width: 768px) {
@@ -149,7 +133,6 @@
   }
 
   .hamburger {
-    display: flex;
-    align-items: center;
+    display: block;
   }
 }

@@ -2,26 +2,34 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import CountUp from 'react-countup'
 import { useInView as useIOInView } from 'react-intersection-observer'
+import {
+  FaMapMarkerAlt,
+  FaEnvelope,
+  FaGraduationCap,
+  FaCode,
+  FaProjectDiagram,
+  FaLayerGroup,
+  FaBrain
+} from 'react-icons/fa'
+import { FiArrowUpRight } from 'react-icons/fi'
 import styles from './About.module.css'
 
-const GITHUB_AVATAR = 'https://avatars.githubusercontent.com/u/192669532?v=4'
-
 const stats = [
-  { number: 2, suffix: '+', label: 'Projects Built', icon: '🚀' },
-  { number: 3, suffix: 'rd Year', label: 'B.Tech CSE', icon: '🎓' },
-  { number: 1, suffix: ' Stack', label: 'MERN Specialist', icon: '⚡' },
-  { number: 2, suffix: '+', label: 'AI-Powered Apps', icon: '🤖' },
+  { number: 2, suffix: '+', label: 'Deployed Apps', icon: <FaProjectDiagram /> },
+  { number: 3, suffix: 'rd Year', label: 'B.Tech CSE', icon: <FaGraduationCap /> },
+  { number: 1, suffix: ' Focus', label: 'MERN Specialist', icon: <FaLayerGroup /> },
+  { number: 194, suffix: '+', label: 'LeetCode Solved', icon: <FaCode /> },
 ]
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
 }
 
 function StatCard({ stat, inView }) {
   return (
     <div className={styles.statCard}>
-      <span className={styles.statIcon}>{stat.icon}</span>
+      <div className={styles.statIcon}>{stat.icon}</div>
       <div className={styles.statNumber}>
         {inView ? (
           <CountUp
@@ -41,11 +49,11 @@ function StatCard({ stat, inView }) {
 
 export default function About() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const isInView = useInView(ref, { once: true, margin: '-80px' })
   const [statsRef, statsInView] = useIOInView({ triggerOnce: true, threshold: 0.3 })
 
   return (
-    <div className="section-padding" ref={ref}>
+    <div className={`section-padding ${styles.section}`} ref={ref}>
       <div className="section-container">
         {/* Section header */}
         <motion.div
@@ -54,7 +62,7 @@ export default function About() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          <p className={styles.sectionTag}>GET TO KNOW ME</p>
+          <p className={styles.sectionTag}>BACKGROUND &amp; PHILOSOPHY</p>
           <h2 className="section-title">
             About <span className="gradient-text">Me</span>
           </h2>
@@ -62,102 +70,111 @@ export default function About() {
         </motion.div>
 
         <div className={styles.grid}>
-          {/* Left — Avatar card */}
-          <motion.div
-            className={styles.avatarSide}
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <div className={styles.avatarCard}>
-              <div className={styles.avatarGlow} />
-              <img
-                src={GITHUB_AVATAR}
-                alt="Sayan Goel"
-                className={styles.avatar}
-              />
-              <div className={styles.avatarBadge}>
-                <span className={styles.dot} />
-                Open to Work
-              </div>
-            </div>
-            <div className={styles.techPills}>
-              {['React', 'Node.js', 'MongoDB', 'Express', 'Gemini AI'].map((t) => (
-                <span key={t} className={styles.techPill}>{t}</span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right — Bio + stats */}
+          {/* Left — Professional Narrative */}
           <motion.div
             className={styles.textSide}
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h3 className={styles.greeting}>
-              I'm Sayan Goel 👋
+              Engineering robust digital products from concept to deployment.
             </h3>
+            
             <p className={styles.bio}>
-              I'm a passionate <strong>3rd-year B.Tech CSE student</strong> from{' '}
+              I am a 3rd-year Computer Science &amp; Engineering undergraduate at{' '}
               <span className={styles.highlight}>
-                Punjab College of Technical Engineering, Ludhiana
+                Punjab College of Technical Engineering (PCTE), Ludhiana
               </span>
-              . I build full-stack web applications powered by AI, using the{' '}
-              <span className={styles.highlight}>MERN stack</span>. I love turning
-              ideas into real products that solve real problems.
+              . My technical focus centers on architecting scalable full-stack web applications using the MERN ecosystem (MongoDB, Express, React, Node.js), combined with modern AI integrations.
             </p>
+            
             <p className={styles.bio}>
-              Whether it's building a study assistant with Gemini AI or creating an
-              intelligent travel planner, I'm constantly exploring how modern AI can
-              enhance everyday applications.
+              I prioritize clean code structure, predictable state management, and responsive interfaces. Beyond application development, I actively strengthen my computational thinking through Data Structures and Algorithms practice.
             </p>
 
+            {/* Structured Specifications Grid */}
             <div className={styles.infoGrid}>
               <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>📍 Location</span>
-                <span className={styles.infoValue}>Ludhiana, Punjab, India</span>
+                <div className={styles.infoIconWrapper}>
+                  <FaMapMarkerAlt />
+                </div>
+                <div>
+                  <span className={styles.infoLabel}>Location</span>
+                  <span className={styles.infoValue}>Ludhiana, Punjab, India</span>
+                </div>
               </div>
+
               <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>📧 Email</span>
-                <a href="mailto:sayangoel14@gmail.com" className={styles.infoValue}>
-                  sayangoel14@gmail.com
-                </a>
+                <div className={styles.infoIconWrapper}>
+                  <FaEnvelope />
+                </div>
+                <div>
+                  <span className={styles.infoLabel}>Email</span>
+                  <a href="mailto:sayangoel14@gmail.com" className={styles.infoLink}>
+                    sayangoel14@gmail.com
+                  </a>
+                </div>
               </div>
+
               <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>🎓 Degree</span>
-                <span className={styles.infoValue}>B.Tech in CSE</span>
+                <div className={styles.infoIconWrapper}>
+                  <FaGraduationCap />
+                </div>
+                <div>
+                  <span className={styles.infoLabel}>Academics</span>
+                  <span className={styles.infoValue}>B.Tech in Computer Science</span>
+                </div>
               </div>
+
               <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>💼 Stack</span>
-                <span className={styles.infoValue}>MERN + AI</span>
+                <div className={styles.infoIconWrapper}>
+                  <FaCode />
+                </div>
+                <div>
+                  <span className={styles.infoLabel}>Core Stack</span>
+                  <span className={styles.infoValue}>MongoDB, Express, React, Node.js</span>
+                </div>
               </div>
             </div>
 
-            <a
-              href="https://github.com/SAYAN2122"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-              style={{ display: 'inline-flex', marginTop: '1rem' }}
-            >
-              <span>View GitHub Profile</span>
-            </a>
+            <div className={styles.actionRow}>
+              <a
+                href="https://github.com/SAYAN2122"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline"
+              >
+                <span>GitHub Repositories</span>
+                <FiArrowUpRight size={14} />
+              </a>
+            </div>
           </motion.div>
-        </div>
 
-        {/* Stats */}
-        <div ref={statsRef} className={styles.statsGrid}>
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
-            >
-              <StatCard stat={stat} inView={statsInView} />
-            </motion.div>
-          ))}
+          {/* Right — Key Technical Metrics */}
+          <motion.div
+            className={styles.statsSide}
+            ref={statsRef}
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <div className={styles.statsCardWrapper}>
+              <div className={styles.statsHeader}>
+                <h4 className={styles.statsTitle}>Engineering Profile</h4>
+                <span className={styles.badgeLabel}>Active 2026</span>
+              </div>
+              <p className={styles.statsSummary}>
+                Demonstrated commitment to building real-world software solutions and continuous problem-solving practice.
+              </p>
+              
+              <div className={styles.statsGrid}>
+                {stats.map((s) => (
+                  <StatCard key={s.label} stat={s} inView={statsInView} />
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>

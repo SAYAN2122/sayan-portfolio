@@ -80,8 +80,8 @@ export default function Contact() {
     showToast(
       'success',
       emailSent
-        ? '✅ Message sent! I\'ll get back to you soon.'
-        : '📩 Message saved! I\'ll get back to you soon.'
+        ? 'Message sent successfully. I will get back to you promptly.'
+        : 'Message saved. Thank you for reaching out.'
     )
   }
 
@@ -226,7 +226,7 @@ export default function Contact() {
                   value={form.message}
                   onChange={handleChange}
                   className={`${styles.input} ${styles.textarea}`}
-                  placeholder="Tell me about your project or just say hi 👋"
+                  placeholder="Provide project details or inquiry..."
                   rows={5}
                   required
                 />

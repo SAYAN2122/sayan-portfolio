@@ -1,121 +1,132 @@
+.section {
+  background-color: var(--color-bg);
+  position: relative;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
 .header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 .sectionTag {
   font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: #6366f1;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--color-primary-light);
   margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
 }
 
 .divider {
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, #6366f1, #a855f7);
+  width: 48px;
+  height: 2px;
+  background: var(--color-primary);
   border-radius: 2px;
-  margin: 1rem auto 1.25rem;
+  margin: 1rem auto 0;
 }
 
-.categories {
+.subtitle {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  max-width: 580px;
+  margin: 1rem auto 0;
+  line-height: 1.6;
+}
+
+/* Groups Grid */
+.groupsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.groupCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 1.75rem;
+  transition: var(--transition);
+}
+
+.groupCard:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.cardHeader {
   display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.category {
-  /* each category block */
-}
-
-.categoryHeader {
+.groupIconWrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  justify-content: center;
+  color: var(--color-primary-light);
+  font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
-.catIcon {
-  font-size: 1.5rem;
-}
-
-.catLabel {
+.groupTitle {
   font-size: 1.1rem;
   font-weight: 700;
-  font-family: 'Space Grotesk', sans-serif;
-}
-
-.skillsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-}
-
-/* Skill card */
-.skillCard {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.25rem;
-  border-radius: 12px;
-  cursor: default;
-  transition: all 0.3s ease;
-}
-
-.skillIcon {
-  font-size: 1.75rem;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  filter: drop-shadow(0 0 6px currentColor);
-}
-
-.skillInfo {
-  flex: 1;
-  min-width: 0;
-}
-
-.skillName {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #e2e8f0;
-  margin-bottom: 0.4rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.progressBar {
-  height: 4px;
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: 2px;
-  overflow: hidden;
+  color: #f8fafc;
   margin-bottom: 0.25rem;
 }
 
-.progressFill {
-  height: 100%;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #6366f1, var(--skill-color, #a855f7));
+.groupDesc {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  line-height: 1.4;
 }
 
-.levelText {
-  font-size: 0.7rem;
-  color: #64748b;
+.chipsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skillChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.8rem;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  color: #cbd5e1;
+  font-size: 0.82rem;
   font-weight: 500;
+  transition: var(--transition);
 }
 
-@media (max-width: 640px) {
-  .skillsGrid {
-    grid-template-columns: 1fr 1fr;
-  }
+.skillChip:hover {
+  background: var(--color-surface-elevated);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
-@media (max-width: 400px) {
-  .skillsGrid {
+.chipIcon {
+  font-size: 0.95rem;
+  color: #94a3b8;
+}
+
+.chipName {
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 860px) {
+  .groupsGrid {
     grid-template-columns: 1fr;
   }
 }

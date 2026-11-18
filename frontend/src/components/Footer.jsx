@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin, FaHeart } from 'react-icons/fa'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { SiLeetcode } from 'react-icons/si'
 import { Link } from 'react-scroll'
 import styles from './Footer.module.css'
@@ -30,28 +30,28 @@ const navLinks = [
 ]
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear()
+
   return (
     <footer className={styles.footer}>
-      <div className={styles.topBorder} />
-
       <div className={styles.container}>
-        {/* Logo & tagline */}
+        {/* Brand */}
         <div className={styles.brand}>
           <div className={styles.logo}>SG</div>
           <p className={styles.tagline}>
-            Building impactful software with <FaHeart className={styles.heart} /> and the MERN stack.
+            Full-Stack Software Engineer specializing in MERN architectures, AI integration, and scalable web solutions.
           </p>
         </div>
 
-        {/* Nav links */}
+        {/* Navigation */}
         <nav className={styles.navLinks}>
           {navLinks.map((l) => (
             <Link
               key={l.to}
               to={l.to}
               smooth
-              duration={600}
-              offset={-80}
+              duration={500}
+              offset={-70}
               className={styles.navLink}
             >
               {l.label}
@@ -59,7 +59,7 @@ export default function Footer() {
           ))}
         </nav>
 
-        {/* Social icons */}
+        {/* Socials */}
         <div className={styles.socials}>
           {socialLinks.map((s) => (
             <a
@@ -76,14 +76,13 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom row */}
-      <div className={styles.bottom}>
-        <p className={styles.copyright}>
-          © 2026 <span className={styles.name}>Sayan Goel</span>. All rights reserved.
-        </p>
-        <p className={styles.builtWith}>
-          Built with <FaHeart className={styles.heart} /> using MERN Stack
-        </p>
+      <div className={styles.bottomBar}>
+        <div className={styles.bottomContainer}>
+          <span className={styles.copyright}>
+            &copy; {currentYear} Sayan Goel. All rights reserved.
+          </span>
+          <span className={styles.location}>Ludhiana, Punjab, India</span>
+        </div>
       </div>
     </footer>
   )

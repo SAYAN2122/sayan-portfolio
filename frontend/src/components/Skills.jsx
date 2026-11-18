@@ -7,6 +7,10 @@ import {
   FaNodeJs,
   FaGitAlt,
   FaGithub,
+  FaDesktop,
+  FaServer,
+  FaDatabase,
+  FaTools
 } from 'react-icons/fa'
 import {
   SiJavascript,
@@ -22,133 +26,105 @@ import {
 import { TbApi } from 'react-icons/tb'
 import styles from './Skills.module.css'
 
-const categories = [
+const skillGroups = [
   {
-    label: 'Frontend',
-    icon: '🎨',
-    color: '#61dafb',
+    label: 'Frontend Engineering',
+    icon: <FaDesktop />,
+    description: 'Component architecture, responsive layouts, and state management.',
     skills: [
-      { name: 'React', icon: <FaReact />, color: '#61dafb', level: 90 },
-      { name: 'JavaScript', icon: <SiJavascript />, color: '#f7df1e', level: 85 },
-      { name: 'HTML5', icon: <FaHtml5 />, color: '#e34f26', level: 95 },
-      { name: 'CSS3', icon: <FaCss3Alt />, color: '#264de4', level: 88 },
-      { name: 'Tailwind CSS', icon: <SiTailwindcss />, color: '#38bdf8', level: 80 },
+      { name: 'React', icon: <FaReact /> },
+      { name: 'JavaScript (ES6+)', icon: <SiJavascript /> },
+      { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
+      { name: 'HTML5 Semantic', icon: <FaHtml5 /> },
+      { name: 'CSS3 Modules', icon: <FaCss3Alt /> },
     ],
   },
   {
-    label: 'Backend',
-    icon: '⚙️',
-    color: '#68a063',
+    label: 'Backend & APIs',
+    icon: <FaServer />,
+    description: 'RESTful API design, middleware pipelines, and authentication.',
     skills: [
-      { name: 'Node.js', icon: <FaNodeJs />, color: '#68a063', level: 85 },
-      { name: 'Express.js', icon: <SiExpress />, color: '#ffffff', level: 82 },
-      { name: 'REST APIs', icon: <TbApi />, color: '#a855f7', level: 88 },
+      { name: 'Node.js', icon: <FaNodeJs /> },
+      { name: 'Express.js', icon: <SiExpress /> },
+      { name: 'RESTful Architecture', icon: <TbApi /> },
+      { name: 'JWT & Security', icon: <FaTools /> },
     ],
   },
   {
-    label: 'Database',
-    icon: '🗄️',
-    color: '#4db33d',
+    label: 'Database Systems',
+    icon: <FaDatabase />,
+    description: 'Document schema design, data modeling, and query optimization.',
     skills: [
-      { name: 'MongoDB', icon: <SiMongodb />, color: '#4db33d', level: 82 },
-      { name: 'Mongoose', icon: <SiMongoose />, color: '#880000', level: 78 },
+      { name: 'MongoDB', icon: <SiMongodb /> },
+      { name: 'Mongoose ODM', icon: <SiMongoose /> },
+      { name: 'MongoDB Atlas', icon: <SiMongodb /> },
     ],
   },
   {
-    label: 'Tools & Others',
-    icon: '🛠️',
-    color: '#f97316',
+    label: 'DevOps & Tooling',
+    icon: <FaTools />,
+    description: 'Version control, cloud deployment platforms, and AI integrations.',
     skills: [
-      { name: 'Git', icon: <FaGitAlt />, color: '#f05032', level: 85 },
-      { name: 'GitHub', icon: <FaGithub />, color: '#e2e8f0', level: 88 },
-      { name: 'Vercel', icon: <SiVercel />, color: '#e2e8f0', level: 80 },
-      { name: 'Render', icon: <SiRender />, color: '#46e3b7', level: 75 },
-      { name: 'Gemini AI', icon: <SiGooglegemini />, color: '#4285f4', level: 72 },
-      { name: 'Postman', icon: <SiPostman />, color: '#ff6c37', level: 82 },
+      { name: 'Git Version Control', icon: <FaGitAlt /> },
+      { name: 'GitHub Actions', icon: <FaGithub /> },
+      { name: 'Vercel Deployment', icon: <SiVercel /> },
+      { name: 'Render Cloud', icon: <SiRender /> },
+      { name: 'Gemini / Groq AI', icon: <SiGooglegemini /> },
+      { name: 'Postman Testing', icon: <SiPostman /> },
     ],
   },
 ]
-
-function SkillCard({ skill, delay, isInView }) {
-  return (
-    <motion.div
-      className={`${styles.skillCard} glass`}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-      transition={{ duration: 0.4, delay }}
-      whileHover={{ y: -4, boxShadow: `0 12px 30px rgba(0,0,0,0.3)` }}
-    >
-      <div className={styles.skillIcon} style={{ color: skill.color }}>
-        {skill.icon}
-      </div>
-      <div className={styles.skillInfo}>
-        <div className={styles.skillName}>{skill.name}</div>
-        <div className={styles.progressBar}>
-          <motion.div
-            className={styles.progressFill}
-            initial={{ width: 0 }}
-            animate={isInView ? { width: `${skill.level}%` } : {}}
-            transition={{ duration: 1, delay: delay + 0.2, ease: 'easeOut' }}
-            style={{ '--skill-color': skill.color }}
-          />
-        </div>
-        <span className={styles.levelText}>{skill.level}%</span>
-      </div>
-    </motion.div>
-  )
-}
 
 export default function Skills() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <div className="section-padding" ref={ref}>
+    <div className={`section-padding ${styles.section}`} ref={ref}>
       <div className="section-container">
         {/* Header */}
         <motion.div
           className={styles.header}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
-          <p className={styles.sectionTag}>WHAT I WORK WITH</p>
+          <p className={styles.sectionTag}>TECHNICAL CAPABILITIES</p>
           <h2 className="section-title">
-            My <span className="gradient-text">Skills</span>
+            Skills &amp; <span className="gradient-text">Technologies</span>
           </h2>
           <div className={styles.divider} />
-          <p className="section-subtitle" style={{ textAlign: 'center' }}>
-            Technologies and tools I use to build full-stack applications
+          <p className={styles.subtitle}>
+            A structured stack built around modern JavaScript and scalable cloud infrastructure.
           </p>
         </motion.div>
 
-        {/* Categories */}
-        <div className={styles.categories}>
-          {categories.map((cat, ci) => (
+        {/* Groups Grid */}
+        <div className={styles.groupsGrid}>
+          {skillGroups.map((group, gi) => (
             <motion.div
-              key={cat.label}
-              className={styles.category}
-              initial={{ opacity: 0, y: 30 }}
+              key={group.label}
+              className={styles.groupCard}
+              initial={{ opacity: 0, y: 24 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: ci * 0.1 }}
+              transition={{ duration: 0.5, delay: gi * 0.1 }}
             >
-              <div className={styles.categoryHeader}>
-                <span className={styles.catIcon}>{cat.icon}</span>
-                <h3
-                  className={styles.catLabel}
-                  style={{ color: cat.color }}
-                >
-                  {cat.label}
-                </h3>
+              <div className={styles.cardHeader}>
+                <div className={styles.groupIconWrapper}>
+                  {group.icon}
+                </div>
+                <div>
+                  <h3 className={styles.groupTitle}>{group.label}</h3>
+                  <p className={styles.groupDesc}>{group.description}</p>
+                </div>
               </div>
-              <div className={styles.skillsGrid}>
-                {cat.skills.map((skill, si) => (
-                  <SkillCard
-                    key={skill.name}
-                    skill={skill}
-                    delay={ci * 0.1 + si * 0.07}
-                    isInView={isInView}
-                  />
+
+              <div className={styles.chipsContainer}>
+                {group.skills.map((skill) => (
+                  <div key={skill.name} className={styles.skillChip}>
+                    <span className={styles.chipIcon}>{skill.icon}</span>
+                    <span className={styles.chipName}>{skill.name}</span>
+                  </div>
                 ))}
               </div>
             </motion.div>
