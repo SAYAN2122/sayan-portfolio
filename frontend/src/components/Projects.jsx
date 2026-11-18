@@ -121,24 +121,18 @@ function ProjectCard({ project, index, isInView }) {
 export default function Projects() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
-  const [projects, setProjects] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
+  const [projects, setProjects] = useState(FALLBACK_PROJECTS)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/api/projects`, { timeout: 5000 })
+        const { data } = await axios.get(`${API_URL}/api/projects`, { timeout: 4000 })
         if (Array.isArray(data) && data.length > 0) {
           setProjects(data)
-        } else {
-          setProjects(FALLBACK_PROJECTS)
         }
       } catch {
-        setError(true)
-        setProjects(FALLBACK_PROJECTS)
-      } finally {
-        setLoading(false)
+        // Silently keep high-quality fallback projects
       }
     }
     fetchProjects()
@@ -168,13 +162,6 @@ export default function Projects() {
         {loading && (
           <div className={styles.loadingWrapper}>
             <div className="spinner" />
-          </div>
-        )}
-
-        {/* Error notice */}
-        {error && !loading && (
-          <div className={styles.errorNotice}>
-            <span>⚠️</span> Couldn't reach the server — showing demo projects.
           </div>
         )}
 
