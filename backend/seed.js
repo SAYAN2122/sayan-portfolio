@@ -10,7 +10,7 @@ const projects = [
     description:
       'AI-powered study assistant built with the MERN stack. Leverages the Gemini API to help students generate summaries, quizzes, and study plans from their notes.',
     githubUrl: 'https://github.com/SAYAN2122/studyAI',
-    liveUrl: 'https://study-ai-ashy-six.vercel.app',
+    liveUrl: 'https://study-c6fa2r7ly-sayan2122.vercel.app',
     technologies: ['MongoDB', 'Express', 'React', 'Node.js', 'AI/Gemini API', 'Tailwind CSS'],
     featured: true,
     order: 1,

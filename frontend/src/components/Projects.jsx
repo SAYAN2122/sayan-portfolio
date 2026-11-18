@@ -14,7 +14,7 @@ const FALLBACK_PROJECTS = [
       'An AI-powered study assistant that helps students learn smarter. Generates quizzes, summaries, and explanations from any topic using Google Gemini AI.',
     techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'Gemini AI'],
     githubUrl: 'https://github.com/SAYAN2122/studyAI',
-    liveUrl: 'https://study-ai-ashy-six.vercel.app',
+    liveUrl: 'https://study-c6fa2r7ly-sayan2122.vercel.app',
     featured: true,
   },
   {
